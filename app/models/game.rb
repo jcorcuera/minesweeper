@@ -12,7 +12,11 @@ class Game < ApplicationRecord
   validates :mines, presence: true
 
   def board
-    @board ||= load_board
+    load_board
+  end
+
+  def total_tiles
+    rows * cols
   end
 
   private

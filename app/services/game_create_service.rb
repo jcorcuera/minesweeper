@@ -14,7 +14,9 @@ class GameCreateService
   private
 
   def generate_board
-    Array.new(game.rows * game.cols, '%').join
+    board = Array.new(game.total_tiles - game.mines, Game::TILE[:closed])
+    board += Array.new(game.mines, Game::TILE[:bomb])
+    board.shuffle.join
   end
 
 end
