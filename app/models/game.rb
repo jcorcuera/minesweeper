@@ -1,4 +1,12 @@
 class Game < ApplicationRecord
+
+  TILE = {
+    closed: '%',
+    bomb: '*',
+    exploded_bomb: 'X'
+  }
+
+
   validates :rows, presence: true
   validates :cols, presence: true
   validates :mines, presence: true
