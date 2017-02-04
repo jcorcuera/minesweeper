@@ -1,4 +1,18 @@
 class Game < ApplicationRecord
+  validates :rows, presence: true
+  validates :cols, presence: true
+  validates :mines, presence: true
+
+  def board
+    @board ||= load_board
+  end
+
+  private
+
+  def load_board
+    state.split(//).in_groups_of(cols)
+  end
+
 end
 
 # == Schema Information

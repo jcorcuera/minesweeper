@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Game, type: :model do
+
+  let(:game) { create(:game) }
+
+
+  describe "#board" do
+
+    it { expect(game.board.class).to eq(Array) }
+    it { expect(game.board.count).to eq(game.rows) }
+    it { expect(game.board[0].count).to eq(game.cols) }
+
+  end
+
 end
 
 # == Schema Information
