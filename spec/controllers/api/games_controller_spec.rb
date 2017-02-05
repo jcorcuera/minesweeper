@@ -37,11 +37,11 @@ RSpec.describe API::GamesController, type: :controller do
 
   end
 
-    describe "GET #reveal" do
+  describe "POST #reveal" do
     let(:game) { create(:game) }
 
     it 'returns data of requested game' do
-      get :reveal, params: { id: game.id, row: 1, col: 1, format: :json }
+      post :reveal, params: { id: game.id, row: 1, col: 1, format: :json }
 
       json_response = JSON.parse(response.body)
       expect(response).to be_success
@@ -49,13 +49,12 @@ RSpec.describe API::GamesController, type: :controller do
     end
 
     it 'returns an error if position is invalid' do
-      get :reveal, params: { id: game.id, row: -1, col: -1, format: :json }
+      post :reveal, params: { id: game.id, row: -1, col: -1, format: :json }
 
       json_response = JSON.parse(response.body)
       expect(response).to be_bad_request
       expect(json_response['error']).to be_present
     end
-
   end
 
 end
