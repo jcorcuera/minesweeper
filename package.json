@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "author": "Jose Corcuera",
   "description": "JC minesweeper",
-  "dependencies" : {
+  "dependencies": {
     "browserify": "~10.2.4",
-    "browserify-incremental": "^3.0.1"
+    "browserify-incremental": "^3.0.1",
+    "vue": "^2.1.10"
   },
   "license": "MIT",
   "engines": {
