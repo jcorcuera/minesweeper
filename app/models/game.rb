@@ -17,7 +17,7 @@ class Game < ApplicationRecord
 
   def board
     _board = state
-    _board = state.gsub(TILE[:bomb], TILE[:closed]) if finished_at
+    _board = state.gsub(TILE[:bomb], TILE[:closed]) unless finished_at
     _board
       .split(//)
       .in_groups_of(cols)
