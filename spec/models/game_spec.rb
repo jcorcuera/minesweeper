@@ -15,10 +15,10 @@ RSpec.describe Game, type: :model do
       it "matches from state" do
         row, col = 3, 4
         position = (3 * cols) + col
-        game.state[position] = Game::TILE[:bomb]
+        game.state[position] = Game::TILE[:flag]
         game.save
 
-        expect(game.board[3][4]).to eq(Game::TILE[:bomb])
+        expect(game.board[3][4]).to eq(Game::TILE[:flag])
       end
     end
   end
@@ -59,11 +59,13 @@ end
 #
 # Table name: games
 #
-#  id         :integer          not null, primary key
-#  rows       :integer
-#  cols       :integer
-#  mines      :integer
-#  state      :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  rows        :integer
+#  cols        :integer
+#  mines       :integer
+#  state       :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  finished_at :datetime
+#  won         :boolean          default("false")
 #

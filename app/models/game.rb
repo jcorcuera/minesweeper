@@ -5,7 +5,9 @@ class Game < ApplicationRecord
   TILE = {
     closed: '%',
     bomb: '*',
-    exploded_bomb: 'X'
+    exploded_bomb: 'X',
+    flag: 'F',
+    question_mark: '?'
   }
 
 
@@ -14,7 +16,11 @@ class Game < ApplicationRecord
   validates :mines, presence: true, numericality: { only_integer: true }
 
   def board
-    load_board
+    _board = state
+    _board = state.gsub(TILE[:bomb], TILE[:closed]) unless finished_at
+    _board
+      .split(//)
+      .in_groups_of(cols)
   end
 
   def total_tiles
@@ -46,23 +52,19 @@ class Game < ApplicationRecord
     col >= 0 && col < cols
   end
 
-  private
-
-  def load_board
-    state.split(//).in_groups_of(cols)
-  end
-
 end
 
 # == Schema Information
 #
 # Table name: games
 #
-#  id         :integer          not null, primary key
-#  rows       :integer
-#  cols       :integer
-#  mines      :integer
-#  state      :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  rows        :integer
+#  cols        :integer
+#  mines       :integer
+#  state       :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  finished_at :datetime
+#  won         :boolean          default("false")
 #
