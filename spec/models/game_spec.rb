@@ -37,6 +37,22 @@ RSpec.describe Game, type: :model do
     end
   end
 
+  describe "#near_tiles_at" do
+
+    it 'should not include current tile' do
+      expect(game.near_tiles_at(1,1)).not_to include([1,1])
+    end
+
+    it 'should list tiles around' do
+      near = [[0,0], [0,1], [0,2],
+              [1,0],        [1,2],
+              [2,0], [2,1], [2,2]]
+
+      expect(game.near_tiles_at(1,1)).to eq(near)
+    end
+
+  end
+
 end
 
 # == Schema Information
