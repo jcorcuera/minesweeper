@@ -1,9 +1,2 @@
 <h1> Minesweeper </h1>
-
-<h2>Current Games:</h2>
-
-<ul>
-  <li v-for="game in games">
-    ID: {{game.id}} - Dimensions: {{game.rows}} x {{game.cols}} - Mines: {{ game.mines }}
-  </li>
-</ul>
+<router-view></router-view>

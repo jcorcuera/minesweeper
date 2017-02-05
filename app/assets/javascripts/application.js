@@ -13,7 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require_self
-//= require_tree .
 
 window.Vue = require('vue/dist/vue.common');
+window.VueRouter = require('vue-router');
 window.axios = require('axios');
+
+Vue.use(VueRouter);
+
+var GameIndex = require('./components/game_index');
+
+var router = new VueRouter({
+  routes: [
+    { path: '/', component: GameIndex }
+  ]
+});
+
+new Vue({
+  el: '#app',
+  router
+});
