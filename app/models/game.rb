@@ -34,6 +34,10 @@ class Game < ApplicationRecord
     list_rows.product(list_cols) - [[row, col]]
   end
 
+  def tile_set(row, col, value)
+    state[(row * cols) + col] = value
+  end
+
   def valid_row?(row)
     row >= 0 && row < rows
   end

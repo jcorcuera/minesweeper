@@ -9,7 +9,20 @@ class GameTileRevealService
   end
 
   def perform
-    raise "BOMB" if game.tile_at(row, col)
+    reveal(row, col)
+  end
+
+  def reveal(_row, _col)
+    current_tile = game.tile_at(_row, _col)
+
+    raise Game::BombExploded if current_tile == GAME::TILE[:bomb]
+
+    if current_tile == Game::TILE[:closed]
+      near_tiles = game.near_tiles_at(_row, _col)
+      total_bombs =  near_tiles.count {|r,c| game.tile_at(r,c) == GAME::TILE[:bomb] }
+
+      game.tile_set(_row, _col, total_bombs.to_s)
+    end
   end
 
 end
