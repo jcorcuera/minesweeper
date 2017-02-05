@@ -12,7 +12,7 @@
           <tr>
             <td v-for="(value, cindex) in row">
 
-              <button v-if="value == '%'" class='tile closed'></button>
+              <button v-if="value == '%'" @click="reveal(rindex, cindex)" class='tile closed'></button>
               <div v-else-if="value == '*'" class='tile bomb'>*</div>
               <div v-else-if="value == 'X'" class='tile exploted-bomb'>X</div>
               <div v-else class='tile number'>{{value}}</div>
@@ -45,6 +45,17 @@ module.exports = {
     fetchGame: function(gameId) {
       var that = this;
       axios.get('/api/games/' + gameId + '.json')
+        .then(function(response){
+          that.game = response.data;
+        });
+    },
+
+    reveal: function(row, col) {
+      var that = this;
+      axios.post('/api/games/' + this.game.id + '/reveal.json', {
+          row: row,
+          col: col
+        })
         .then(function(response){
           that.game = response.data;
         });

@@ -16,7 +16,9 @@
 
 window.Vue = require('vue/dist/vue.common');
 window.VueRouter = require('vue-router');
+
 window.axios = require('axios');
+axios.defaults.headers.common['X-CSRF-Token'] = $('meta[name="csrf-token"]').attr('content');
 
 window.bus = new Vue();
 
