@@ -59,11 +59,13 @@ end
 #
 # Table name: games
 #
-#  id         :integer          not null, primary key
-#  rows       :integer
-#  cols       :integer
-#  mines      :integer
-#  state      :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  rows        :integer
+#  cols        :integer
+#  mines       :integer
+#  state       :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  finished_at :datetime
+#  won         :boolean          default("false")
 #

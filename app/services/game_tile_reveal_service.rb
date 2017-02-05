@@ -30,4 +30,11 @@ class GameTileRevealService
     reveal(*queue.shift, queue)
   end
 
+  def handle_explostion
+    game.finished_at = Time.now
+    game.won = false
+    game.tile_set(row, col, Game::TILE[:exploded_bomb])
+    game.save
+  end
+
 end
