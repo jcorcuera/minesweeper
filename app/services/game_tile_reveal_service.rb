@@ -10,23 +10,24 @@ class GameTileRevealService
 
   def perform
     reveal(row, col)
+    game.save!
   end
 
   def reveal(_row, _col, queue=[])
     current_tile = game.tile_at(_row, _col)
 
-    raise Game::BombExploded if current_tile == GAME::TILE[:bomb]
+    raise Game::BombExploded if current_tile == Game::TILE[:bomb]
 
     if current_tile == Game::TILE[:closed]
       near_tiles = game.near_tiles_at(_row, _col)
-      total_bombs =  near_tiles.count {|r,c| game.tile_at(r,c) == GAME::TILE[:bomb] }
+      total_bombs =  near_tiles.count {|r,c| game.tile_at(r,c) == Game::TILE[:bomb] }
       game.tile_set(_row, _col, total_bombs.to_s)
       queue += near_tiles if total_bombs.zero?
     end
 
     return if queue.blank?
 
-    reveal(queue.shift, queue)
+    reveal(*queue.shift, queue)
   end
 
 end
