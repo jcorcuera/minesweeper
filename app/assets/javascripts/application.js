@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require_self
 //= require_tree .
+
+window.Vue = require('vue/dist/vue.common');
+window.axios = require('axios');
