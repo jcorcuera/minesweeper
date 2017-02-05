@@ -18,16 +18,14 @@ table.board {
   width: 40px;
   height: 40px;
   text-align: center;
-  padding-top: 5px;
+  padding-top: 0px;
   font-size: 20px;
 
   &.bomb {
-    padding-top: 0px;
     font-size: 40px;
   }
 
   &.exploded-bomb {
-    padding-top: 0px;
     font-size: 40px;
     color: red;
   }
