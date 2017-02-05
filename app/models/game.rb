@@ -9,9 +9,9 @@ class Game < ApplicationRecord
   }
 
 
-  validates :rows, presence: true
-  validates :cols, presence: true
-  validates :mines, presence: true
+  validates :rows, presence: true, numericality: { only_integer: true }
+  validates :cols, presence: true, numericality: { only_integer: true }
+  validates :mines, presence: true, numericality: { only_integer: true }
 
   def board
     load_board

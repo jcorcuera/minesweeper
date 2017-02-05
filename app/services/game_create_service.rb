@@ -7,8 +7,13 @@ class GameCreateService
   end
 
   def perform
+    raise_unless_valid?
     game.state = generate_board
     game.save!
+  end
+
+  def raise_unless_valid?
+    game.validate!
   end
 
   private
