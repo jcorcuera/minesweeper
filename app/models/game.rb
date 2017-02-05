@@ -5,7 +5,9 @@ class Game < ApplicationRecord
   TILE = {
     closed: '%',
     bomb: '*',
-    exploded_bomb: 'X'
+    exploded_bomb: 'X',
+    flag: 'F',
+    question_mark: '?'
   }
 
 
@@ -46,10 +48,11 @@ class Game < ApplicationRecord
     col >= 0 && col < cols
   end
 
-  private
-
   def load_board
-    state.split(//).in_groups_of(cols)
+    state
+      .gsub(TILE[:bomb], TILE[:closed])
+      .split(//)
+      .in_groups_of(cols)
   end
 
 end
