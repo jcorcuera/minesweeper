@@ -24,6 +24,8 @@ class GameTileRevealService
       queue += near_tiles if total_bombs.zero?
     end
 
+    return if queue.blank?
+
     reveal(queue.shift, queue)
   end
 
