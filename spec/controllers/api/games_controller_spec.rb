@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe API::GamesController, type: :controller do
+RSpec.describe Api::GamesController, type: :controller do
 
   describe "GET #index" do
 

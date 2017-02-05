@@ -1,3 +1,44 @@
 // Place all the styles related to the games controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  padding-top: 50px;
+  text-align: center
+}
+
+table.board {
+  margin: 0px auto;
+  td {
+    border: 1px solid gray;
+  }
+}
+
+.tile {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding-top: 5px;
+  font-size: 20px;
+
+  &.bomb {
+    padding-top: 0px;
+    font-size: 40px;
+  }
+
+  &.exploded-bomb {
+    padding-top: 0px;
+    font-size: 40px;
+    color: red;
+  }
+
+  &.number {
+    font-weight: bold;
+  }
+
+  &.closed {
+    background: gray;
+  }
+
+
+}

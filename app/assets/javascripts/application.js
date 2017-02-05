@@ -12,4 +12,36 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require_self
+
+window.Vue = require('vue/dist/vue.common');
+window.VueRouter = require('vue-router');
+window.axios = require('axios');
+
+window.bus = new Vue();
+
+Vue.use(VueRouter);
+
+var GameIndex = require('./components/game_index');
+var GameShow = require('./components/game_show');
+
+router = new VueRouter({
+  routes: [
+    { path: '/', name: 'games', component: GameIndex },
+    { path: '/games/:gameId', name: 'game', component: GameShow }
+  ]
+});
+
+new Vue({
+  el: '#app',
+
+  router,
+
+  created: function() {
+
+    bus.$on('show-game', function(id) {
+      router.push({name: 'game', params: { gameId: id}});
+    });
+
+  }
+});

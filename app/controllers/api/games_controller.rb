@@ -1,4 +1,4 @@
-class API::GamesController < API::BaseController
+class Api::GamesController < Api::BaseController
 
   before_action :find_game, only: [:show, :reveal]
 

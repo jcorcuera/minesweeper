@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # Serialize resources
 gem 'active_model_serializers'
 
+# Browserify
+gem 'browserify-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
