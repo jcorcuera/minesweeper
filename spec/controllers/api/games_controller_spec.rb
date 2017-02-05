@@ -2,6 +2,22 @@ require 'rails_helper'
 
 RSpec.describe API::GamesController, type: :controller do
 
+  describe "GET #index" do
+
+    before do
+      create_list(:game, 5)
+      get :index, params: { format: :json }
+    end
+
+    it 'returns data of requested game' do
+      expect(response).to be_success
+
+      json_response = JSON.parse(response.body)
+      expect(json_response.length).to eq(5)
+    end
+
+  end
+
   describe "GET #show" do
     let(:game) { create(:game) }
 
