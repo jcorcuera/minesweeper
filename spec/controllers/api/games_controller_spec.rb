@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GamesController, type: :controller do
+RSpec.describe API::GamesController, type: :controller do
 
   describe "GET #show" do
     let(:game) { create(:game) }
