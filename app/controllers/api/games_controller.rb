@@ -12,6 +12,18 @@ class API::GamesController < API::BaseController
     render json: @game
   end
 
+  def create
+    service = GameCreateService.new(
+      rows: game_params[:rows],
+      cols: game_params[:cols],
+      mines: game_params[:mines]
+    )
+    service.perform
+    render json: service.game, status: :created
+  rescue ActiveRecord::RecordInvalid
+    render json: { error: service.game.errors.messages }, status: :bad_request
+  end
+
   def reveal
     service = GameTileRevealService.new(
       game: @game,
@@ -28,6 +40,10 @@ class API::GamesController < API::BaseController
 
   def find_game
     @game = Game.find(params[:id])
+  end
+
+  def game_params
+    params.require(:game).permit(:rows, :cols, :mines)
   end
 
 end

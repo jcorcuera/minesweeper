@@ -37,6 +37,24 @@ RSpec.describe API::GamesController, type: :controller do
 
   end
 
+  describe "POST #create" do
+    it 'returns data of requested game' do
+      post :create, params: { game: { rows: 5, cols: 6, mines: 4 }, format: :json }
+
+      json_response = JSON.parse(response.body)
+      expect(response).to be_created
+      expect(json_response['id']).to_not be_nil
+    end
+
+    it 'returns an error if required parameters are missing' do
+      post :create, params: { game: { rows: 1 }, format: :json }
+
+      json_response = JSON.parse(response.body)
+      expect(response).to be_bad_request
+      expect(json_response['error']).to be_present
+    end
+  end
+
   describe "POST #reveal" do
     let(:game) { create(:game) }
 
