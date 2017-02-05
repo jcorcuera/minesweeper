@@ -1,7 +1,29 @@
 <template>
+
   <div>
-    Show
+
+    <h2 v-if="game">
+      Dimensions: {{game.rows}} x {{game.cols}} - Mines: {{ game.mines }}
+    </h2>
+
+    <table v-if="game" class='board'>
+      <tbody>
+        <template v-for="(row, rindex) in game.board">
+          <tr>
+            <td v-for="(value, cindex) in row">
+
+              <button v-if="value == '%'" class='tile closed'></button>
+              <div v-else-if="value == '*'" class='tile bomb'>*</div>
+              <div v-else-if="value == 'X'" class='tile exploted-bomb'>X</div>
+              <div v-else class='tile number'>{{value}}</div>
+
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
   </div>
+
 </template>
 
 <script>
