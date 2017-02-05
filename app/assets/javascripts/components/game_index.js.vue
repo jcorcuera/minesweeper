@@ -6,6 +6,7 @@
     <ul>
       <li v-for="game in games">
         ID: {{game.id}} - Dimensions: {{game.rows}} x {{game.cols}} - Mines: {{ game.mines }}
+        (<a @click="showGame(game)">Play</a>)
       </li>
     </ul>
   </div>
@@ -34,6 +35,10 @@ module.exports = {
         .then(function(response) {
           that.games = response.data;
         });
+    },
+
+    showGame: function(game) {
+      bus.$emit('show-game', game.id);
     }
   }
 }
