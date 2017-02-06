@@ -34,9 +34,6 @@ class Api::GamesController < Api::BaseController
     render json: service.game
   rescue Game::InvalidPosition
     render json: { error: 'Invalid Position' }, status: :bad_request
-  rescue Game::BombExploded
-    service.handle_explosion
-    render json: service.game
   end
 
   protected

@@ -11,6 +11,8 @@ class GameTileRevealService
   def perform
     reveal(row, col)
     game.save!
+  rescue Game::BombExploded
+    handle_explosion
   end
 
   def reveal(_row, _col, queue=[])
