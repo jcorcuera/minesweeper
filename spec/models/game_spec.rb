@@ -33,7 +33,7 @@ RSpec.describe Game, type: :model do
     end
 
     it 'raise an error for invalid access' do
-      expect{ game.tile_at(-1,valid_col) }.to raise_error
+      expect{ game.tile_at(-1,valid_col) }.to raise_error(Game::InvalidPosition)
     end
   end
 
